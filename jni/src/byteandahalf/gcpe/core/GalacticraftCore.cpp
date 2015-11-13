@@ -5,6 +5,8 @@
 #include <substrate.h>
 #include <string>
 
+#include "com/mojang/minecraftpe/world/level/block/Block.h"
+
 #include "blocks/GCBlocks.h"
 
 
@@ -13,7 +15,6 @@ void Block$initBlocks() {
 	_Block$initBlocks();
 
 	GCBlocks::initBlocks();
-	GCBlocks::initBlockItems();
 }
 
 

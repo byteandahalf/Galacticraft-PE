@@ -2,6 +2,6 @@
 
 enum class DimensionId : int {
 	OVERWORLD,
-	HELL,
-	NONE
+	NETHER,
+	NODIMENSION
 };

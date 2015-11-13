@@ -21,7 +21,7 @@ bool BlockID::operator==(BlockID other) {
 }
 
 BlockID& BlockID::operator=(const unsigned char& other) {
-	value = v;
+	value = other;
 	return *this;
 }
 

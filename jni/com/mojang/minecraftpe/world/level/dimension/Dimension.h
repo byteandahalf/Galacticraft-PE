@@ -54,7 +54,7 @@ public:
 	virtual void sendBroadcast(const Packet&, Player*);
 	virtual void addMoveEntityPacket(const MoveEntityPacketData&);
 	virtual void addSetEntityMotionPacket(Entity&);
-	virtual long getTimeOfDay(int, float);
+	virtual long getTimeOfDay(int, float) const;
 
 	std::unique_ptr<ChunkSource> _createGenerator(GeneratorType);
 	const Vec3& getSkyColor(const Entity&, float);

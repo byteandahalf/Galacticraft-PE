@@ -16,6 +16,7 @@ struct BlockID {
 	bool operator==(BlockID);
 	BlockID& operator=(const unsigned char&);
 	operator unsigned char();
+	operator int();
 };
 
 struct FullBlock {

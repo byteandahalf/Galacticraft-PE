@@ -7,7 +7,7 @@ public:
 
 	// Unfortunately alot of the functions that this class must override aren't virtual on MCPE :(
 	// I'll fix this eventually with a lot of hooks.
-	virtual const std::string& getName();
+	virtual const std::string& getName() const;
 	virtual bool hasGas(void*); // TODO
 	virtual bool hasOxygenAtmosphere();
 	virtual float getSolarSize();

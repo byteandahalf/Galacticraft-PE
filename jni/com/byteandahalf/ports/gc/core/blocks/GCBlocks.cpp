@@ -51,7 +51,7 @@ Block* GCBlocks::moonBricksStairs;
 Block* GCBlocks::wallGC;
 
 void GCBlocks::initBlocks() {
-	breatheableAir = new BlockBreatheableAir(200, "breatheableAir");
+	//breatheableAir = new BlockBreatheableAir(200, "breatheableAir");
 
 	registerBlocks();
 }
@@ -62,5 +62,5 @@ void GCBlocks::registerBlock(Block* block) {
 }
 
 void GCBlocks::registerBlocks() {
-	registerBlock(breatheableAir);
+	//registerBlock(breatheableAir);
 }

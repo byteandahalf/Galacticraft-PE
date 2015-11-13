@@ -1,6 +1,7 @@
 #include "BlockBasic.h"
 #include "com/mojang/minecraftpe/world/material/Material.h"
 #include "com/mojang/minecraftpe/world/level/BlockSource.h"
+#include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 
 #include "../items/GCItems.h"
@@ -80,10 +81,10 @@ int BlockBasic::getResourceCount(Random& random, int data, int fortune) {
 	return 1; // TODO
 }
 
-ItemInstance& BlockBasic::asItemInstance(BlockSource& region, const BlockPos& pos, int idk) const {
+const ItemInstance& BlockBasic::asItemInstance(BlockSource& region, const BlockPos& pos, int idk) const {
 	int data = region.getData(pos);
 	if(data == 8)
-		return ItemInstance(blockId, 1, data);
+		return ItemInstance(this, 1, data);
 
 	return Block::asItemInstance(region, pos, idk);
 }

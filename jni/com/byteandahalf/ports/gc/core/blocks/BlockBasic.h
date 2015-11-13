@@ -11,7 +11,7 @@ public:
 	virtual int getResource(Random&, int, int);
 	virtual int getSpawnResourcesAuxValue(unsigned char);
 	virtual int getResourceCount(Random&, int, int);
-	virtual ItemInstance& asItemInstance(BlockSource&, const BlockPos&, int) const;
+	virtual const ItemInstance& asItemInstance(BlockSource&, const BlockPos&, int) const;
 
 	void initTextures();
 };

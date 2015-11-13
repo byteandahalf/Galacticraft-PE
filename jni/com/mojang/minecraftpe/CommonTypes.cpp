@@ -29,6 +29,10 @@ BlockID::operator unsigned char() {
 	return value;
 }
 
+BlockID::operator int() {
+	return value;
+}
+
 FullBlock::FullBlock(BlockID id, DataID data) {
 	this->id = id;
 	this->data = data;

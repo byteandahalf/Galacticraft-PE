@@ -140,7 +140,7 @@ public:
 	virtual void onGraphicsModeChanged(bool, bool);
 	virtual int getResource(Random&, int, int);
 	virtual int getResourceCount(Random&, int, int);
-	virtual ItemInstance& asItemInstance(BlockSource&, const BlockPos&, int) const;
+	virtual ItemInstance* asItemInstance(BlockSource&, const BlockPos&, int) const;
 	virtual float getDestroyProgress(Player&);
 	virtual void spawnResources(BlockSource&, const BlockPos&, int, float, int);
 	virtual void spawnBurnResources(BlockSource&, float, float, float);

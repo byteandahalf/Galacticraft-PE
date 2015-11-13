@@ -4,18 +4,18 @@ class CelestialBody;
 
 class GalacticraftDimension : public Dimension {
 public:
-	GalacticraftDimension(Level&, DimensionId);
+	GalacticraftDimension(Level& level, DimensionId id) : Dimension(level, id) {}
 
-	virtual float getGravity();
-	virtual double getMeteorFrequency();
-	virtual double getFuelUsageMultiplier();
-	virtual bool canSpaceshipTierPass(int);
-	virtual float getFallDamageModifier();
-	virtual float getSoundMuffle();
-	virtual bool hasOxygenAtmosphere();
-	virtual bool hasGas(void*); // TODO
-	virtual float getThermalLevelModifier();
-	virtual float getWindLevel();
-	virtual float getSolarSize();
+	virtual float getGravity() = 0;
+	virtual double getMeteorFrequency() = 0;
+	virtual double getFuelUsageMultiplier() = 0;
+	virtual bool canSpaceshipTierPass(int) = 0;
+	virtual float getFallDamageModifier() = 0;
+	virtual float getSoundMuffle() = 0;
+	virtual bool hasOxygenAtmosphere() = 0;
+	virtual bool hasGas(void*) = 0; // TODO
+	virtual float getThermalLevelModifier() = 0;
+	virtual float getWindLevel() = 0;
+	virtual float getSolarSize() = 0;
 	virtual CelestialBody* getCelestialBody() = 0;
 };

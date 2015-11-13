@@ -20,7 +20,7 @@ public:
 	DimensionId id; // 16
 	bool ultraWarm; // 20
 	bool ceiling; // 21
-	char filler2[64] // 24
+	char filler2[64]; // 24
 	Level& level; // 88
 	std::unique_ptr<ChunkSource> chunkSource; // 92
 	BlockSource& blockSource; // 96 DEPRECATEDUSEPLAYERREGIONINSTEAD

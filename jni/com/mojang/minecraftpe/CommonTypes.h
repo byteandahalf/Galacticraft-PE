@@ -25,6 +25,7 @@ struct FullBlock {
 	DataID data;
 
 	FullBlock(BlockID, DataID);
+	operator unsigned char();
 };
 
 struct Brightness {

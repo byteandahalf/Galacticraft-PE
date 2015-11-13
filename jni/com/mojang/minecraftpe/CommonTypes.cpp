@@ -33,3 +33,7 @@ FullBlock::FullBlock(BlockID id, DataID data) {
 	this->id = id;
 	this->data = data;
 }
+
+FullBlock::operator unsigned char() {
+	return id;
+}

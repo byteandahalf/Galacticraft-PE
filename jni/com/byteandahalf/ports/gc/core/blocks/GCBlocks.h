@@ -4,9 +4,10 @@ class Block;
 class GCBlocks {
 public:
 	static void initBlocks();
+	static void registerFluids();
 
-	static void registerBlock(Block*);
 	static void registerBlocks();
+	static void registerBlock(Block*);
 
 	static Block* breatheableAir;
 	static Block* brightAir;

@@ -1,5 +1,8 @@
 #include "GCBlocks.h"
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
+#include "BlockBasic.h"
+#include "BlockFluidDynamicGC.h"
+#include "BlockFluidStaticGC.h"
 
 Block* GCBlocks::breatheableAir;
 Block* GCBlocks::brightAir;
@@ -51,16 +54,25 @@ Block* GCBlocks::moonBricksStairs;
 Block* GCBlocks::wallGC;
 
 void GCBlocks::initBlocks() {
-	//breatheableAir = new BlockBreatheableAir(200, "breatheableAir");
+	basicBlock = new BlockBasic(200, "gcBlockCore");
 
+	registerFluids();
 	registerBlocks();
+}
+
+void GCBlocks::registerFluids() {
+	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", 201, "oil");
+	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", 202, "oil");
+	//fuel = new BlockFluidDynamicGC("fuelFlowing", 202, "fuel");
+}
+
+void GCBlocks::registerBlocks() {
+	registerBlock(basicBlock);
+	registerBlock(crudeOil);
+	registerBlock(fuel);
 }
 
 void GCBlocks::registerBlock(Block* block) {
 	block->init();
 	Block::mBlocks[block->blockId] = block;
-}
-
-void GCBlocks::registerBlocks() {
-	//registerBlock(breatheableAir);
 }

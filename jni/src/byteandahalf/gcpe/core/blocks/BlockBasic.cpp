@@ -10,6 +10,7 @@ BlockBasic::BlockBasic(int blockId, const std::string& assetName) :
 	setDestroyTime(1.0F);
 	setExplodeable(15.0F);
 	creativeCategory = 0;
+	initTextures();
 }
 
 void BlockBasic::initTextures() {
@@ -82,7 +83,7 @@ int BlockBasic::getResourceCount(Random& random, int data, int fortune) {
 ItemInstance* BlockBasic::asItemInstance(BlockSource& region, const BlockPos& pos, int idk) const {
 	int data = region.getData(pos);
 	if(data == 8)
-		return new ItemInstance(blockId, 1, data);
+		return ItemInstance(blockId, 1, data);
 
 	return Block::asItemInstance(region, pos, idk);
 }

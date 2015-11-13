@@ -69,7 +69,7 @@ int BlockBasic::getResource(Random& random, int data, int fortune) {
 	return blockId;
 }
 
-void BlockBasic::getSpawnResourcesAuxValue(unsigned char data) {
+int BlockBasic::getSpawnResourcesAuxValue(unsigned char data) {
 	if(data == 8)
 		return 2;
 
@@ -80,7 +80,7 @@ int BlockBasic::getResourceCount(Random& random, int data, int fortune) {
 	return 1; // TODO
 }
 
-ItemInstance* BlockBasic::asItemInstance(BlockSource& region, const BlockPos& pos, int idk) const {
+ItemInstance& BlockBasic::asItemInstance(BlockSource& region, const BlockPos& pos, int idk) const {
 	int data = region.getData(pos);
 	if(data == 8)
 		return ItemInstance(blockId, 1, data);

@@ -2,6 +2,7 @@
 class Block;
 struct BlockPos;
 class BlockEntity;
+class Level;
 #include "../../CommonTypes.h"
 
 class BlockSource {

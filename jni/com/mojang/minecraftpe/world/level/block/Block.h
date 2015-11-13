@@ -178,7 +178,7 @@ public:
 	virtual Block* setDestroyTime(float);
 	virtual Block* setFriction(float);
 	virtual void setTicking(bool);
-	virtual void getSpawnResourcesAuxValue(unsigned char);
+	virtual int getSpawnResourcesAuxValue(unsigned char);
 
 	const std::string& getDescriptionId() const;
 	void addAABB(const AABB&, const AABB*, std::vector<AABB, std::allocator<AABB>>&);

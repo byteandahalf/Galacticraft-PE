@@ -12,16 +12,23 @@ void GCFeatures::setDecorator(BiomeDecorator* decorator) {
 	Decorator = decorator;
 }
 
+void GCFeatures::flushFeatures() {
+	// Delete existing instances of each Feature
+	delete testFeature.release();
+}
+
 void GCFeatures::initFeatures() {
-	//Init Feature unique_ptr here
-	testFeature.reset(new OreFeature(19, 0, 12));
+	// Init unique_ptrs for features
+	flushFeatures();
+	
+	//testFeature.reset(new OreFeature(19, 0, 12));
 	
 	registerFeatures();
 }
 
 void GCFeatures::registerFeatures() {
-	//create FeatureInfo and push feature to global vector
-	features.push_back(GCFeatureInfo(GCFeatureInfo::GenType::SPAN, testFeature, 20, 0, 128));
+	// Create FeatureInfo and push to the global feature vector
+	//features.push_back(GCFeatureInfo(GCFeatureInfo::GenType::SPAN, testFeature, 20, 0, 128));
 }
 
 void GCFeatures::populateFeatures(BlockSource* region, Random& random, const BlockPos& pos) {

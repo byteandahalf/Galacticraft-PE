@@ -16,6 +16,7 @@ class GCFeatures {
 	
 public:
 	static void setDecorator(BiomeDecorator*);
+	static void flushFeatures();
 	static void initFeatures();
 	static void registerFeatures();
 	static void populateFeatures(BlockSource*, Random&, const BlockPos&);

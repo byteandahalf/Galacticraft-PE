@@ -10,8 +10,4 @@ LOCAL_SRC_FILES := $(LOCAL_SRC_FILES_RAW:$(LOCAL_PATH)/%=%)
 # and for accessing BlockLauncher functions
 LOCAL_LDLIBS    := -L$(LOCAL_PATH) -llog -ldl -lminecraftpe -lmcpelauncher_tinysubstrate
 
-# ignore undefined symbols.
-# workaround for method not found errors.
-TARGET_NO_UNDEFINED_LDFLAGS :=
-
 include $(BUILD_SHARED_LIBRARY)

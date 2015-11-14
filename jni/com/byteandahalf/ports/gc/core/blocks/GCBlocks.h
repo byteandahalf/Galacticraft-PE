@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 class Block;
 
 class GCBlocks {
@@ -8,6 +9,8 @@ public:
 
 	static void registerBlocks();
 	static void registerBlock(Block*);
+
+	static std::vector<Block*> creativeBlocks;
 
 	static Block* breatheableAir;
 	static Block* brightAir;

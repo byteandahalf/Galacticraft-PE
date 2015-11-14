@@ -10,8 +10,8 @@ BlockBasic::BlockBasic(int blockId, const std::string& assetName) :
 	Block(assetName, blockId, assetName, Material::mMaterials[3]) {
 	setDestroyTime(1.0F);
 	setExplodeable(15.0F);
-	creativeCategory = 0;
-	initTextures();
+	creativeCategory = 1;
+	//initTextures();
 }
 
 void BlockBasic::initTextures() {

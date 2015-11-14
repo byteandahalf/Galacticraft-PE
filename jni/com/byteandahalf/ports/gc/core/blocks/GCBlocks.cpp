@@ -1,5 +1,6 @@
 #include "GCBlocks.h"
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
+#include "com/mojang/minecraftpe/world/item/BlockItem.h"
 #include "BlockBasic.h"
 #include "BlockFluidDynamicGC.h"
 #include "BlockFluidStaticGC.h"
@@ -53,8 +54,10 @@ Block* GCBlocks::moonStoneStairs;
 Block* GCBlocks::moonBricksStairs;
 Block* GCBlocks::wallGC;
 
+std::vector<Block*> GCBlocks::creativeBlocks;
+
 void GCBlocks::initBlocks() {
-	basicBlock = new BlockBasic(200, "gcBlockCore");
+	basicBlock = new BlockBasic(200, /*"gcBlockCore"*/"stone");
 
 	registerFluids();
 	registerBlocks();
@@ -75,4 +78,6 @@ void GCBlocks::registerBlocks() {
 void GCBlocks::registerBlock(Block* block) {
 	block->init();
 	Block::mBlocks[block->blockId] = block;
+	Item::mItems[block->blockId] = new BlockItem(block->blockId - 0x100);
+	creativeBlocks.push_back(block);
 }

@@ -4,22 +4,20 @@
 #include "GCFeatureInfo.h"
 
 std::vector<GCFeatureInfo> GCFeatures::features;
-
-void GCFeatures::initFeatures() {
-	static bool inited = false;
-	if (inited) return;
-	inited = true;
-	registerFeatures();
-}
+bool GCFeatures::Registered = false;
 
 void GCFeatures::registerFeatures() {
+	if(Registered)
+		return;
+	Registered = true;
+	
 	// Create FeatureInfo and push to the global feature vector
-	features.emplace_back(GCFeatureInfo::GenType::SPAN,
-		std::unique_ptr<Feature>(new OreFeature(19, 0, 12)), 20, 0, 128);
+	features.emplace_back(GCFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(19, 0, 12)), 20, 0, 128);
 }
 
 void GCFeatures::populateFeatures(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& pos) {
-	GCFeatures::initFeatures();
+	registerFeatures();
+	
 	for(GCFeatureInfo& fe : features) {
 		if(fe.gentype == GCFeatureInfo::GenType::SPAN)
 			decorator->decorateDepthSpan(region, random, pos, fe.amountPerChunk, fe.feature, fe.minY, fe.maxY);

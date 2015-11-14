@@ -1,7 +1,6 @@
 #pragma once
 #include <memory>
 #include "com/mojang/minecraftpe/world/level/levelgen/feature/Feature.h"
-class Feature;
 
 struct GCFeatureInfo {
 	enum class GenType : int {

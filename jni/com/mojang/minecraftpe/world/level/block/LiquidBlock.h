@@ -3,6 +3,7 @@
 #include "../../../client/renderer/texture/TextureAtlasTextureItem.h"
 
 class LiquidBlock : public Block {
+protected:
 	TextureUVCoordinateSet topTexture;
 	TextureUVCoordinateSet sideTexture;
 	TextureAtlasTextureItem textureItem;

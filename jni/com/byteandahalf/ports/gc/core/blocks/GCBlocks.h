@@ -31,7 +31,8 @@ public:
 	static Block* basicBlock;
 	static Block* airLockFrame;
 	static Block* airLockSeal;
-	static Block* crudeOil;
+	static Block* crudeOilStatic;
+	static Block* crudeOilDynamic;
 	static Block* fuel;
 	static Block* refinery;
 	static Block* fuelLoader;

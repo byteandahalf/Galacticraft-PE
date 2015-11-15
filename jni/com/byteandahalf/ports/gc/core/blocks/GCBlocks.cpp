@@ -24,7 +24,8 @@ Block* GCBlocks::fallenMeteor;
 Block* GCBlocks::basicBlock;
 Block* GCBlocks::airLockFrame;
 Block* GCBlocks::airLockSeal;
-Block* GCBlocks::crudeOil;
+Block* GCBlocks::crudeOilStatic;
+Block* GCBlocks::crudeOilDynamic;
 Block* GCBlocks::fuel;
 Block* GCBlocks::refinery;
 Block* GCBlocks::fuelLoader;
@@ -64,20 +65,21 @@ void GCBlocks::initBlocks() {
 }
 
 void GCBlocks::registerFluids() {
-	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", 201, "oil");
-	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", 202, "oil");
-	//fuel = new BlockFluidDynamicGC("fuelFlowing", 202, "fuel");
+	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", 201, "stone");
+	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", 202, "stone");
+	//fuel = new BlockFluidDynamicGC("fuelFlowing", 203, "fuel");
 }
 
 void GCBlocks::registerBlocks() {
 	registerBlock(basicBlock);
-	registerBlock(crudeOil);
-	registerBlock(fuel);
+	registerBlock(crudeOilStatic);
+	registerBlock(crudeOilDynamic);
+	//registerBlock(fuel);
 }
 
 void GCBlocks::registerBlock(Block* block) {
 	block->init();
 	Block::mBlocks[block->blockId] = block;
-	Item::mItems[block->blockId] = new BlockItem(block->blockId - 0x100);
+	Item::mItems[block->blockId] = new BlockItem(block->getDescriptionId(), block->blockId - 0x100);
 	creativeBlocks.push_back(block);
 }

@@ -2,6 +2,7 @@
 #include "LiquidBlock.h"
 
 class LiquidBlockStatic : public LiquidBlock {
+protected:
 	BlockID _dynamic;
 
 public:

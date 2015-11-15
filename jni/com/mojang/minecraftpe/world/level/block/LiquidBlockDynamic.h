@@ -2,6 +2,7 @@
 #include "LiquidBlock.h"
 
 class LiquidBlockDynamic : public LiquidBlock {
+protected:
 	int maxCount;
 	bool result[4];
 	int dist[4];

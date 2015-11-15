@@ -90,6 +90,7 @@ public:
 
 	void init(Json::Value&);
 
+	static TextureUVCoordinateSet getTextureUVCoordinateSet(const std::string&, int);
 	static void initItems();
 	static void addBlockItems();
 	static void initCreativeItems();
@@ -97,4 +98,6 @@ public:
 	static void addCreativeItem(Item*, short);
 	static void addCreativeItem(const ItemInstance&);
 	static void addCreativeItem(short, short);
+
+	static Item* mBucket; // 325
 };

@@ -12,8 +12,10 @@
 #include "com/mojang/minecraftpe/client/MinecraftClient.h"
 
 #include "blocks/GCBlocks.h"
+#include "items/GCItems.h"
 #include "world/wgen/GCFeatures.h"
 #include "texture/GCAnimatedTexture.h"
+#include "hook/GCHookBucketItem.h"
 
 
 void (*_Block$initBlocks)();
@@ -23,13 +25,20 @@ void Block$initBlocks() {
 	GCBlocks::initBlocks();
 }
 
+void (*_Item$initItems)();
+void Item$initItems() {
+	_Item$initItems();
+
+	GCItems::initItems();
+	GCHook::BucketItem::initHooks();
+}
+
 void (*_Item$initCreativeItems)();
 void Item$initCreativeItems() {
 	_Item$initCreativeItems();
 
-	for(Block* block : GCBlocks::creativeBlocks) {
-		// TODO: Metadata
-		Item::addCreativeItem(block, 0);
+	for(ItemInstance& stack : GCItems::creativeItems) {
+		Item::addCreativeItem(stack);
 	}
 }
 
@@ -51,6 +60,7 @@ void MinecraftClient$init(MinecraftClient* self) {
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
+	MSHookFunction((void*) &Item::initItems, (void*) &Item$initItems, (void**) &_Item$initItems);
 	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &MinecraftClient::init, (void*) &MinecraftClient$init, (void**) &_MinecraftClient$init);

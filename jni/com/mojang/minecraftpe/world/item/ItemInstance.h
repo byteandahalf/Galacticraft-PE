@@ -5,7 +5,7 @@ class Block;
 
 class ItemInstance {
 public:
-	short count, data;
+	short count, aux;
 	CompoundTag* userData;
 	Item* item;
 	Block* block;
@@ -13,6 +13,8 @@ public:
 
 	ItemInstance();
 	ItemInstance(int, int, int);
+	ItemInstance(const Item*, int);
 	ItemInstance(const Item*, int, int);
+	ItemInstance(const Block*, int);
 	ItemInstance(const Block*, int, int);
 };

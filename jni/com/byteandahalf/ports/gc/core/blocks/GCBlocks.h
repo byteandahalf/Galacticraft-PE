@@ -10,8 +10,6 @@ public:
 	static void registerBlocks();
 	static void registerBlock(Block*);
 
-	static std::vector<Block*> creativeBlocks;
-
 	static Block* breatheableAir;
 	static Block* brightAir;
 	static Block* brightBreatheableAir;

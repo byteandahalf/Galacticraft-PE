@@ -13,7 +13,7 @@
 
 #include "blocks/GCBlocks.h"
 #include "world/wgen/GCFeatures.h"
-#include "textures/GCAnimatedTextures.h"
+#include "texture/GCAnimatedTextures.h"
 
 
 void (*_Block$initBlocks)();
@@ -53,7 +53,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
 	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
-	MSHookFunction((void*) &MinecraftClient::init, (void*) &MinecraftClient$init, (void**) *_MinecraftClient$init);
+	MSHookFunction((void*) &MinecraftClient::init, (void*) &MinecraftClient$init, (void**) &_MinecraftClient$init);
 
 	return JNI_VERSION_1_2;
 }

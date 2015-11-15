@@ -1,13 +1,13 @@
 #include "GCAnimatedTexture.h"
-#include "com/mojang/minecraftpe/client/renderer/textures/TextureGroup.h"
-#include "com/mojang/minecraftpe/client/renderer/textures/TextureData.h"
+#include "com/mojang/minecraftpe/client/renderer/texture/TextureGroup.h"
+#include "com/mojang/minecraftpe/client/renderer/texture/TextureData.h"
 
 GCAnimatedTexture::GCAnimatedTexture(TextureGroup& textures, const TextureUVCoordinateSet& atlasTemplate, const std::string& png, bool isHD):
 	TickingTexture(atlasTemplate, 1) {
 	// Attempt to use 32x32 textures.
 	this->isHD = isHD;
 
-	TextureData& data = textures->getTextureData(png);
+	TextureData& data = textures.getTextureData(png);
 	pixelCount = data.width * data.height * 4;
 	image = new char[pixelCount];
 

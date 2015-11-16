@@ -1,14 +1,13 @@
 #pragma once
-#include <vector>
 class Block;
 
 class GCBlocks {
 public:
 	static void initBlocks();
-	static void registerFluids();
+	static void initFluids();
 
 	static void registerBlocks();
-	static void registerBlock(Block*, bool);
+	static void registerBlock(Block*);
 
 	static Block* breatheableAir;
 	static Block* brightAir;

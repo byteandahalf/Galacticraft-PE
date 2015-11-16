@@ -8,13 +8,14 @@ namespace GCHook {
 	struct BucketItem {
 		static TextureUVCoordinateSet OilBucketIcon;
 		
-		static void setupClass();
-		static void initReals(void**);
-		static void pushCreativeBuckets();
+		static void setupHooks();
+		static void setupReals(void**);
+		static void postSetup();
 		
-		static const TextureUVCoordinateSet& getIcon(::BucketItem*, int, int, bool);
 
-		static const std::string (*_buildDescriptionName)(::BucketItem*, const ItemInstance&);
-		static const std::string buildDescriptionName(::BucketItem*, const ItemInstance&);
+		static const TextureUVCoordinateSet& (*_getIcon)(::BucketItem*, int, int, bool);
+		static const TextureUVCoordinateSet& getIcon(::BucketItem*, int, int, bool);
+		static std::string (*_buildDescriptionName)(::BucketItem*, const ItemInstance&);
+		static std::string buildDescriptionName(::BucketItem*, const ItemInstance&);
 	};
 };

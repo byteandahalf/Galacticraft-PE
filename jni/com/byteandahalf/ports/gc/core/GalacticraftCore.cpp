@@ -13,6 +13,7 @@
 
 #include "blocks/GCBlocks.h"
 #include "items/GCItems.h"
+#include "creative/GCCreativeManager.h"
 #include "world/wgen/GCFeatures.h"
 #include "texture/GCAnimatedTexture.h"
 #include "hook/GCHookBucketItem.h"
@@ -30,16 +31,14 @@ void Item$initItems() {
 	_Item$initItems();
 
 	GCItems::initItems();
-	GCHook::BucketItem::setupClass();
+	GCHook::BucketItem::setupHooks();
 }
 
 void (*_Item$initCreativeItems)();
 void Item$initCreativeItems() {
 	_Item$initCreativeItems();
 
-	for(ItemInstance& stack : GCItems::creativeItems) {
-		Item::addCreativeItem(stack);
-	}
+	GCCreativeManager::registerCreativeItems();
 }
 
 void (*_BiomeDecorator$decorateOres)(BiomeDecorator*, BlockSource*, Random&, const BlockPos&);

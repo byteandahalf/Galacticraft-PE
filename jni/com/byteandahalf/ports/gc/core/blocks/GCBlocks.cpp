@@ -1,8 +1,7 @@
 #include "GCBlocks.h"
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
 #include "com/mojang/minecraftpe/world/item/BlockItem.h"
-#include "com/mojang/minecraftpe/world/item/ItemInstance.h"
-#include "../items/GCItems.h"
+
 #include "BlockBasic.h"
 #include "BlockFluidDynamicGC.h"
 #include "BlockFluidStaticGC.h"
@@ -28,7 +27,8 @@ Block* GCBlocks::airLockFrame;
 Block* GCBlocks::airLockSeal;
 Block* GCBlocks::crudeOilStatic;
 Block* GCBlocks::crudeOilDynamic;
-Block* GCBlocks::fuel;
+Block* GCBlocks::fuelDynamic;
+Block* GCBlocks::fuelStatic;
 Block* GCBlocks::refinery;
 Block* GCBlocks::fuelLoader;
 Block* GCBlocks::landingPadFull;
@@ -59,29 +59,29 @@ Block* GCBlocks::wallGC;
 
 
 void GCBlocks::initBlocks() {
-	basicBlock = new BlockBasic(200, /*"gcBlockCore"*/"stone");
+	basicBlock = new BlockBasic(200, "gcBlockCore");
 
-	registerFluids();
+	initFluids();
 	registerBlocks();
 }
 
-void GCBlocks::registerFluids() {
+void GCBlocks::initFluids() {
 	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", 201, "oilFlowing");
 	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", 202, "oilStill");
-	//fuel = new BlockFluidDynamicGC("fuelFlowing", 203, "fuel");
+	fuelDynamic = new BlockFluidDynamicGC("fuelFlowing", 203, "fuelFlowing");
+	fuelStatic = new BlockFluidStaticGC("fuelStill", 204, "fuelStill")
 }
 
 void GCBlocks::registerBlocks() {
-	registerBlock(basicBlock, true);
-	registerBlock(crudeOilStatic, false);
-	registerBlock(crudeOilDynamic, false);
-	//registerBlock(fuel);
+	registerBlock(basicBlock);
+	registerBlock(crudeOilStatic);
+	registerBlock(crudeOilDynamic);
+	registerBlock(fuelDynamic);
+	registerBlock(fuelStatic)
 }
 
-void GCBlocks::registerBlock(Block* block, bool availableInCreative) {
+void GCBlocks::registerBlock(Block* block) {
 	block->init();
 	Block::mBlocks[block->blockId] = block;
 	Item::mItems[block->blockId] = new BlockItem(block->getDescriptionId(), block->blockId - 0x100);
-	if(availableInCreative)
-		GCItems::pushCreativeItem(ItemInstance(block, 0));
 }

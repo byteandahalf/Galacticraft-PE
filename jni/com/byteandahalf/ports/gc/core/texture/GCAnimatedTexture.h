@@ -9,11 +9,13 @@ protected:
 	int pixelCount;
 	char* image;
 	bool isHD;
+	int currentTick;
+	int speed;
 
 public:
-	GCAnimatedTexture(TextureGroup&, const TextureUVCoordinateSet&, const std::string&, bool);
+	GCAnimatedTexture(TextureGroup&, const TextureUVCoordinateSet&, const std::string&, int);
 
 	virtual void tick();
 	
-	char getSizeOfFrame();
+	short getSizeOfFrame();
 };

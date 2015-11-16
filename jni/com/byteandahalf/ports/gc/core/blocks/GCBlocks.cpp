@@ -65,8 +65,8 @@ void GCBlocks::initBlocks() {
 }
 
 void GCBlocks::registerFluids() {
-	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", 201, "stone");
-	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", 202, "stone");
+	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", 201, "oil");
+	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", 202, "oil");
 	//fuel = new BlockFluidDynamicGC("fuelFlowing", 203, "fuel");
 }
 

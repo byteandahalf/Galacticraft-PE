@@ -7,11 +7,13 @@
 #include <memory>
 
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
+#include "com/mojang/minecraftpe/world/level/block/LiquidBlock.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/level/biome/BiomeDecorator.h"
 #include "com/mojang/minecraftpe/client/MinecraftClient.h"
 
 #include "blocks/GCBlocks.h"
+#include "blocks/BlockFluidDynamicGC.h"
 #include "items/GCItems.h"
 #include "creative/GCCreativeManager.h"
 #include "world/wgen/GCFeatures.h"
@@ -56,6 +58,15 @@ void MinecraftClient$init(MinecraftClient* self) {
 	GCAnimatedTexture::initAnimatedTextures(self->textures);
 }
 
+int (*_LiquidBlock$getTickDelay)(LiquidBlock*, BlockSource*);
+int LiquidBlock$getTickDelay(LiquidBlock* self, BlockSource* region) {
+	int realReturn = _LiquidBlock$getTickDelay(self, region);
+	if(realReturn == 0)
+		return BlockFluidDynamicGC::getTickDelay(self, region);
+
+	return realReturn;
+}
+
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
@@ -63,6 +74,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &MinecraftClient::init, (void*) &MinecraftClient$init, (void**) &_MinecraftClient$init);
+	MSHookFunction((void*) &LiquidBlock::getTickDelay, (void*) &LiquidBlock$getTickDelay, (void**) &_LiquidBlock$getTickDelay);
 
 	return JNI_VERSION_1_2;
 }

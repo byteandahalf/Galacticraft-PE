@@ -13,7 +13,7 @@
 
 #include "blocks/GCBlocks.h"
 #include "world/wgen/GCFeatures.h"
-#include "texture/GCAnimatedTextures.h"
+#include "texture/GCAnimatedTexture.h"
 
 
 void (*_Block$initBlocks)();
@@ -45,7 +45,7 @@ void (*_MinecraftClient$init)(MinecraftClient*);
 void MinecraftClient$init(MinecraftClient* self) {
 	_MinecraftClient$init(self);
 
-	GCAnimatedTextures::initAnimatedTextures(self->textures);
+	GCAnimatedTexture::initAnimatedTextures(self->textures);
 }
 
 

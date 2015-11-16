@@ -5,3 +5,4 @@ BlockFluidStaticGC::BlockFluidStaticGC(const std::string& name, int blockId, con
 	LiquidBlockStatic(name, blockId, blockId - 1, Material::mMaterials[5], asset, asset) {
 	creativeCategory = 1;
 }
+

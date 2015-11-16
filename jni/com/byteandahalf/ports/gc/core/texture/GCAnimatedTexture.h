@@ -3,6 +3,8 @@
 #include "com/mojang/minecraftpe/client/renderer/texture/TickingTexture.h"
 
 class GCAnimatedTexture : public TickingTexture {
+	short getSizeOfFrame();
+	
 protected:
 	int frameCount;
 	int currentFrame;
@@ -13,9 +15,9 @@ protected:
 	int speed;
 
 public:
-	GCAnimatedTexture(TextureGroup&, const TextureUVCoordinateSet&, const std::string&, int);
+	GCAnimatedTexture(TextureGroup&, const std::string&, const std::string&, int);
 
 	virtual void tick();
 	
-	short getSizeOfFrame();
+	static void initAnimatedTextures(TextureGroup&);
 };

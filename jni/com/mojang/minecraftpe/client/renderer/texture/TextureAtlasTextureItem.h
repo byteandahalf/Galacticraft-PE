@@ -8,4 +8,7 @@ public:
 	std::string name;
 	std::vector<TextureUVCoordinateSet> textures;
 	int count;
+	
+	const TextureUVCoordinateSet& operator[](int) const;
 };
+

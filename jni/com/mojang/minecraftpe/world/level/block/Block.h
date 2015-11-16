@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <memory>
 class Material;
 class BlockEntity;
 struct BlockPos;
@@ -13,6 +14,7 @@ class Random;
 struct Vec3;
 class Brightness;
 class CreativeItemCategory;
+class TextureAtlas;
 #include "../../../client/renderer/texture/TextureUVCoordinateSet.h"
 #include "../../phys/AABB.h"
 #include "../../../CommonTypes.h"
@@ -65,6 +67,7 @@ public:
 	AABB hitbox; // 112
 
 
+	static std::shared_ptr<TextureAtlas> mTerrainTextureAtlas;
 	static std::vector<Block*> mOwnedBlocks;
 	static Block* mBlocks[256];
 	static bool mSolid[256];

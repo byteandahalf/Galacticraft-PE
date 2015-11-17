@@ -5,7 +5,7 @@ class BlockBasic : public Block {
 	TextureUVCoordinateSet iconBuffer[12];
 
 public:
-	BlockBasic(int, const std::string&);
+	BlockBasic(const std::string&, int);
 
 	virtual const TextureUVCoordinateSet& getTexture(signed char, int);
 	virtual int getResource(Random&, int, int);

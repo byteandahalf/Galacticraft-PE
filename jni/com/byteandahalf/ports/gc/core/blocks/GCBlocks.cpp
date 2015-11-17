@@ -59,7 +59,7 @@ Block* GCBlocks::wallGC;
 
 
 void GCBlocks::initBlocks() {
-	basicBlock = new BlockBasic(200, "gcBlockCore");
+	basicBlock = new BlockBasic("gcBlockCore", 200);
 
 	initFluids();
 	registerBlocks();
@@ -69,7 +69,7 @@ void GCBlocks::initFluids() {
 	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", 201, "oilFlowing");
 	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", 202, "oilStill");
 	fuelDynamic = new BlockFluidDynamicGC("fuelFlowing", 203, "fuelFlowing");
-	fuelStatic = new BlockFluidStaticGC("fuelStill", 204, "fuelStill")
+	fuelStatic = new BlockFluidStaticGC("fuelStill", 204, "fuelStill");
 }
 
 void GCBlocks::registerBlocks() {
@@ -77,7 +77,7 @@ void GCBlocks::registerBlocks() {
 	registerBlock(crudeOilStatic);
 	registerBlock(crudeOilDynamic);
 	registerBlock(fuelDynamic);
-	registerBlock(fuelStatic)
+	registerBlock(fuelStatic);
 }
 
 void GCBlocks::registerBlock(Block* block) {

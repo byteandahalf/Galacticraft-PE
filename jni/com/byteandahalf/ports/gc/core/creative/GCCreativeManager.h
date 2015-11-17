@@ -1,6 +1,5 @@
 #pragma once
 
-class GCCreativeManager {
-public:
+struct GCCreativeManager {
 	static void registerCreativeItems();
 };

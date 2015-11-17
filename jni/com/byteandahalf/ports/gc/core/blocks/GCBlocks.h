@@ -30,7 +30,8 @@ public:
 	static Block* airLockSeal;
 	static Block* crudeOilStatic;
 	static Block* crudeOilDynamic;
-	static Block* fuel;
+	static Block* fuelStatic;
+	static Block* fuelDynamic;
 	static Block* refinery;
 	static Block* fuelLoader;
 	static Block* landingPadFull;

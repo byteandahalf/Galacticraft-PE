@@ -6,8 +6,8 @@
 
 #include "../items/GCItems.h"
 
-BlockBasic::BlockBasic(int blockId, const std::string& assetName) :
-	Block(assetName, blockId, assetName, Material::mMaterials[3]) {
+BlockBasic::BlockBasic(const std::string& name, int blockId) :
+	Block(name, blockId, "stone", Material::mMaterials[3]) {
 	setDestroyTime(1.0F);
 	setExplodeable(15.0F);
 	creativeCategory = 1;

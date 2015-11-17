@@ -58,8 +58,8 @@ void MinecraftClient$init(MinecraftClient* self) {
 	GCAnimatedTexture::initAnimatedTextures(self->textures);
 }
 
-int (*_LiquidBlock$getTickDelay)(LiquidBlock*, BlockSource*);
-int LiquidBlock$getTickDelay(LiquidBlock* self, BlockSource* region) {
+int (*_LiquidBlock$getTickDelay)(LiquidBlock*, BlockSource&);
+int LiquidBlock$getTickDelay(LiquidBlock* self, BlockSource& region) {
 	int realReturn = _LiquidBlock$getTickDelay(self, region);
 	if(realReturn == 0)
 		return BlockFluidDynamicGC::getTickDelay(self, region);

@@ -6,5 +6,5 @@ class BlockFluidDynamicGC : public LiquidBlockDynamic {
 public:
 	BlockFluidDynamicGC(const std::string&, int, const std::string&);
 
-	static int getTickDelay(LiquidBlock*, BlockSource*);
+	static int getTickDelay(LiquidBlock*, BlockSource&);
 };

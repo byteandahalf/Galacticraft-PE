@@ -26,4 +26,6 @@ public:
 	virtual int getColor(BlockSource&, const BlockPos&);
 	virtual TextureUVCoordinateSet getTextureNum(int);
 	virtual void getMobToSpawn(BlockSource&, const BlockPos&) const;
+	
+	int getTickDelay(BlockSource&) const;
 };

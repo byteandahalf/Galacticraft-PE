@@ -1,6 +1,9 @@
 #pragma once
 #include "Block.h"
 #include "../../../client/renderer/texture/TextureAtlasTextureItem.h"
+class BlockSource;
+struct BlockPos;
+struct Vec3;
 
 class LiquidBlock : public Block {
 protected:
@@ -28,4 +31,6 @@ public:
 	virtual void getMobToSpawn(BlockSource&, const BlockPos&) const;
 	
 	int getTickDelay(BlockSource&) const;
+	Vec3 _getFlow(BlockSource&, const BlockPos&);
+	int getRenderedDepth(BlockSource&, const BlockPos&);
 };

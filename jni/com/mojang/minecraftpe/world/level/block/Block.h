@@ -189,6 +189,7 @@ public:
 	TextureUVCoordinateSet getTextureUVCoordinateSet(const std::string&, int);
 	Block* setCategory(CreativeItemCategory);
 	void setSolid(bool);
+	bool isSolid() const;
 	static void initBlocks();
 
 	static Block* mAir; // 0

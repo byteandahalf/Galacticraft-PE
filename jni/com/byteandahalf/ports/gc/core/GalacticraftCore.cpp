@@ -68,9 +68,17 @@ int LiquidBlock$getTickDelay(LiquidBlock* self, BlockSource& region) {
 	return realReturn;
 }
 
-void (*Material$__setupSurfaceMaterials)();
+Vec3 (*_LiquidBlock$_getFlow)(LiquidBlock*, BlockSource&, const BlockPos&);
+Vec3 LiquidBlock$_getFlow(LiquidBlock* self, BlockSource& region, const BlockPos& pos) {
+	if(self->material.isType(MaterialType::OIL))
+		return BlockFluidDynamicGC::_getFlow(self, region, pos);
+
+	return _LiquidBlock$_getFlow(self, region, pos);
+}
+
+void (*_Material$_setupSurfaceMaterials)();
 void Material$_setupSurfaceMaterials() {
-	Material$__setupSurfaceMaterials();
+	_Material$_setupSurfaceMaterials();
 	
 	GCBlocks::initMaterials();
 }
@@ -82,7 +90,8 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &MinecraftClient::init, (void*) &MinecraftClient$init, (void**) &_MinecraftClient$init);
 	MSHookFunction((void*) &LiquidBlock::getTickDelay, (void*) &LiquidBlock$getTickDelay, (void**) &_LiquidBlock$getTickDelay);
-	MSHookFunction((void*) &Material::_setupSurfaceMaterials, (void*) &Material$_setupSurfaceMaterials, (void**) &Material$__setupSurfaceMaterials);
-	
+	MSHookFunction((void*) &Material::_setupSurfaceMaterials, (void*) &Material$_setupSurfaceMaterials, (void**) &_Material$_setupSurfaceMaterials);
+	MSHookFunction((void*) &LiquidBlock::_getFlow, (void*) &LiquidBlock$_getFlow, (void**) &_LiquidBlock$_getFlow);
+
 	return JNI_VERSION_1_2;
 }

@@ -8,7 +8,7 @@ public:
 	static void registerFluids();
 
 	static void registerBlocks();
-	static void registerBlock(Block*);
+	static void registerBlock(Block*, bool);
 
 	static Block* breatheableAir;
 	static Block* brightAir;

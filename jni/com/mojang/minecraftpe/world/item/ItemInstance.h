@@ -17,4 +17,5 @@ public:
 	ItemInstance(const Item*, int, int);
 	ItemInstance(const Block*, int);
 	ItemInstance(const Block*, int, int);
+	ItemInstance(const ItemInstance&);
 };

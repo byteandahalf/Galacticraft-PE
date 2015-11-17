@@ -1,7 +1,7 @@
 #include "GCBlocks.h"
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
 #include "com/mojang/minecraftpe/world/item/BlockItem.h"
-#include "com/mojang/minecraftpe/item/ItemInstance.h"
+#include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 #include "../items/GCItems.h"
 #include "BlockBasic.h"
 #include "BlockFluidDynamicGC.h"
@@ -72,9 +72,9 @@ void GCBlocks::registerFluids() {
 }
 
 void GCBlocks::registerBlocks() {
-	registerBlock(basicBlock);
-	registerBlock(crudeOilStatic);
-	registerBlock(crudeOilDynamic);
+	registerBlock(basicBlock, true);
+	registerBlock(crudeOilStatic, false);
+	registerBlock(crudeOilDynamic, false);
 	//registerBlock(fuel);
 }
 

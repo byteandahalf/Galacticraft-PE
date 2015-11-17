@@ -3,11 +3,11 @@
 
 Item* GCItems::basicItem;
 
-std::vector<ItemInstance&> GCItems::creativeItems;
+std::vector<ItemInstance> GCItems::creativeItems;
 
-void GCItems::registerItems() {
+void GCItems::initItems() {
 }
 
-void GCItems::pushCreativeItem(ItemInstance& stack) {
+void GCItems::pushCreativeItem(ItemInstance stack) {
 	creativeItems.push_back(stack);
 }

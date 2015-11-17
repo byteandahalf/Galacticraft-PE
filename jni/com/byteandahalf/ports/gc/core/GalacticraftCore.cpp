@@ -30,7 +30,7 @@ void Item$initItems() {
 	_Item$initItems();
 
 	GCItems::initItems();
-	GCHook::BucketItem::initHooks();
+	GCHook::BucketItem::setupClass();
 }
 
 void (*_Item$initCreativeItems)();

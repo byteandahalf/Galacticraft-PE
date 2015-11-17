@@ -2,6 +2,7 @@
 #include <string>
 class BucketItem;
 class ItemInstance;
+class Player;
 #include "com/mojang/minecraftpe/client/renderer/texture/TextureUVCoordinateSet.h"
 
 namespace GCHook {
@@ -13,6 +14,8 @@ namespace GCHook {
 		static void postSetup();
 		
 
+		static bool (*_useOn)(::BucketItem*, ItemInstance*, Player*, int, int, int, signed char, float, float, float);
+		static bool useOn(::BucketItem*, ItemInstance*, Player*, int, int, int, signed char, float, float, float);
 		static const TextureUVCoordinateSet& (*_getIcon)(::BucketItem*, int, int, bool);
 		static const TextureUVCoordinateSet& getIcon(::BucketItem*, int, int, bool);
 		static std::string (*_buildDescriptionName)(::BucketItem*, const ItemInstance&);

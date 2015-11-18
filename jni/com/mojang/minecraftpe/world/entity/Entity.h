@@ -19,6 +19,7 @@ class DimensionId;
 class ChangeDimensionPacket;
 struct AABB;
 #include "../material/Material.h"
+#include "EntityType.h"
 #include "../phys/Vec3.h"
 
 class Entity {
@@ -34,11 +35,15 @@ public:
 	Level& level; // 116
 	char filler2[68]; // 120
 	float heightOffset; // 188
-	char filler3[138]; // 192
+	char filler3[52]; // 192
+	int rendererId; // 244
+	char filler4[82]; // 248
 	bool wasInWater; // 330
 	char dud[5]; // 331
 	BlockSource& region; // 336
 
+	Entity(BlockSource&);
+	
 	virtual ~Entity();
 	virtual void _postInit();
 	virtual void reset();
@@ -120,7 +125,7 @@ public:
 	virtual void saveWithoutId(CompoundTag&);
 	virtual void load(const CompoundTag&);
 	virtual void loadLinks(const CompoundTag&, std::vector<EntityLink, std::allocator<EntityLink>>&);
-	virtual int getEntityTypeId() const = 0;
+	virtual EntityType getEntityTypeId() const = 0;
 	virtual void queryEntityRenderer();
 	virtual void getSourceUniqueID();
 	virtual void setOnFire(int);
@@ -155,6 +160,8 @@ public:
 	virtual void doWaterSplashEffect();
 	virtual void updateInsideBlock();
 	virtual void onBlockCollision(int);
+	
+	void _init();
 };
 
 typedef std::vector<Entity*> EntityList;

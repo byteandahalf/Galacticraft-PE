@@ -22,6 +22,7 @@
 #include "world/wgen/GCFeatures.h"
 #include "texture/GCAnimatedTexture.h"
 #include "hook/GCHookBucketItem.h"
+#include "entity/GCEntityFactory.h"
 
 
 void (*_Block$initBlocks)();
@@ -83,6 +84,15 @@ void Material$_setupSurfaceMaterials() {
 	_Material$_setupSurfaceMaterials();
 	
 	GCBlocks::initMaterials();
+}
+
+std::unique_ptr<Entity> (*_EntityFactory$CreateEntity)(EntityType, BlockSource&);
+std::unique_ptr<Entity> EntityFactory$CreateEntity(EntityType type, BlockSource& region) {
+	std::unique_ptr<Entity> retval = _EntityFactory$CreateEntity(type, region);
+	if(!retval)
+		return GCEntityFactory::CreateEntity(type, region);
+
+	return retval;
 }
 
 void (*_Entity$updateWaterState)(Entity*);

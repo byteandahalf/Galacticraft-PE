@@ -1,11 +1,9 @@
 #include "BlockBasic.h"
-#include "com/mojang/minecraftpe/world/material/Material.h"
-#include "com/mojang/minecraftpe/world/level/BlockSource.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
-#include "com/mojang/minecraftpe/world/level/Level.h"
 #include "com/mojang/minecraftpe/world/entity/player/Player.h"
-#include "../TestEntity.h"
+#include "../entity/TestEntity.h"
+#include "../includes/leveledit.h"
 #include "../items/GCItems.h"
 
 BlockBasic::BlockBasic(const std::string& name, int blockId) :

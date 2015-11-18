@@ -35,7 +35,7 @@ public:
 	char filler2[68]; // 120
 	float heightOffset; // 188
 	char filler3[138]; // 192
-	char idk330; // 330
+	bool wasInWater; // 330
 	char dud[5]; // 331
 	BlockSource& region; // 336
 

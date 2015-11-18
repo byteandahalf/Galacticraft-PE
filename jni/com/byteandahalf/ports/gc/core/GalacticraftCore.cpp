@@ -9,12 +9,14 @@
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
 #include "com/mojang/minecraftpe/world/level/block/LiquidBlock.h"
 #include "com/mojang/minecraftpe/world/material/Material.h"
+#include "com/mojang/minecraftpe/world/entity/Entity.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/level/biome/BiomeDecorator.h"
 #include "com/mojang/minecraftpe/client/MinecraftClient.h"
 
 #include "blocks/GCBlocks.h"
 #include "blocks/BlockFluidDynamicGC.h"
+#include "fluid/GCFluidHandler.h"
 #include "items/GCItems.h"
 #include "creative/GCCreativeManager.h"
 #include "world/wgen/GCFeatures.h"
@@ -83,6 +85,14 @@ void Material$_setupSurfaceMaterials() {
 	GCBlocks::initMaterials();
 }
 
+void (*_Entity$updateWaterState)(Entity*);
+void Entity$updateWaterState(Entity* self) {
+	_Entity$updateWaterState(self);
+
+	if(!self->wasInWater)
+		GCFluidHandler::handleEntitySwim(self);
+}
+
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
 	MSHookFunction((void*) &Item::initItems, (void*) &Item$initItems, (void**) &_Item$initItems);
@@ -92,6 +102,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &LiquidBlock::getTickDelay, (void*) &LiquidBlock$getTickDelay, (void**) &_LiquidBlock$getTickDelay);
 	MSHookFunction((void*) &Material::_setupSurfaceMaterials, (void*) &Material$_setupSurfaceMaterials, (void**) &_Material$_setupSurfaceMaterials);
 	MSHookFunction((void*) &LiquidBlock::_getFlow, (void*) &LiquidBlock$_getFlow, (void**) &_LiquidBlock$_getFlow);
+	MSHookFunction((void*) &Entity::updateWaterState, (void*) &Entity$updateWaterState, (void**) &_Entity$updateWaterState);
 
 	return JNI_VERSION_1_2;
 }

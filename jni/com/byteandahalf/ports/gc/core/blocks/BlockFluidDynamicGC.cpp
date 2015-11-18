@@ -81,3 +81,4 @@ Vec3 BlockFluidDynamicGC::_getFlow(LiquidBlock* liquid, BlockSource& region, con
     myVec.normalize();
     return myVec;
 }
+

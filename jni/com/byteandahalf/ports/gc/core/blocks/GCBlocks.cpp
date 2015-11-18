@@ -60,17 +60,17 @@ Block* GCBlocks::wallGC;
 
 
 void GCBlocks::initBlocks() {
-	basicBlock = new BlockBasic("gcBlockCore", 200);
+	basicBlock = new BlockBasic("gcBlockCore", getNewRandomID());
 
 	initFluids();
 	registerBlocks();
 }
 
 void GCBlocks::initFluids() {
-	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", 201, "oilFlowing");
-	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", 202, "oilStill");
-	fuelDynamic = new BlockFluidDynamicGC("fuelFlowing", 203, "fuelFlowing");
-	fuelStatic = new BlockFluidStaticGC("fuelStill", 204, "fuelStill");
+	crudeOilDynamic = new BlockFluidDynamicGC("crudeOilFlowing", getNewRandomID(), "oilFlowing");
+	crudeOilStatic = new BlockFluidStaticGC("crudeOilStill", getNewRandomID(), "oilStill");
+	fuelDynamic = new BlockFluidDynamicGC("fuelFlowing", getNewRandomID(), "fuelFlowing");
+	fuelStatic = new BlockFluidStaticGC("fuelStill", getNewRandomID(), "fuelStill");
 }
 
 void GCBlocks::initMaterials() {
@@ -92,4 +92,12 @@ void GCBlocks::registerBlock(Block* block) {
 	block->init();
 	Block::mBlocks[block->blockId] = block;
 	Item::mItems[block->blockId] = new BlockItem(block->getDescriptionId(), block->blockId - 0x100);
+}
+
+int GCBlocks::getNewRandomID() {
+	int id = 0;
+	while(Block::mBlocks[id] != NULL) {
+		id++
+	}	
+	return id;
 }

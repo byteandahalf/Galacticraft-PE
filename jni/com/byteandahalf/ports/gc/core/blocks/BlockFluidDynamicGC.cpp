@@ -13,12 +13,16 @@ int BlockFluidDynamicGC::getTickDelay(LiquidBlock* liquid, BlockSource& region) 
 	return 0;
 }
 
-bool BlockFluidDynamicGC::isBlockSolid(LiquidBlock* liquid, BlockSource& region, const BlockPos& pos, int side) {
-	Material& material = region.getMaterial(pos);
-	return material == liquid->material? false : (side == 1? true : (material == Block::mIce->material? false : region.getBlock(pos)->isSolid()));
+void BlockFluidDynamicGC::handleEntityInside(BlockSource& region, const BlockPos& pos, Entity* entity, Vec3& velocity) {
+	velocity.extend(_getFlow(this, region, pos));
 }
 
-Vec3 BlockFluidDynamicGC::_getFlow(LiquidBlock* liquid, BlockSource& region, const BlockPos& region) {
+bool BlockFluidDynamicGC::isBlockSolid(LiquidBlock* liquid, BlockSource& region, const BlockPos& pos, int side) {
+	Material& material = region.getMaterial(pos);
+	return material.isType(liquid->material.type)? false : (side == 1? true : (material.isType(Block::mIce->material.type)? false : region.getBlock(pos)->isSolid()));
+}
+
+Vec3 BlockFluidDynamicGC::_getFlow(LiquidBlock* liquid, BlockSource& region, const BlockPos& pos) {
 	Vec3 myVec(0.0F, 0.0F, 0.0F);
 	int renderDepth1 = liquid->getRenderedDepth(region, pos);
 

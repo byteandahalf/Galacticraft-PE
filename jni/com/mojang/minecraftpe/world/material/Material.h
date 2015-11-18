@@ -31,7 +31,7 @@ public:
 	bool isReplaceable();
 	bool isLiquid();
 	float getTranslucency();
-	bool getBlocksMotion();
+	bool getBlocksMotion() const;
 	bool isSolid();
 	bool isSuperHot();
 	

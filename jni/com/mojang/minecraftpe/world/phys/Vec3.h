@@ -7,7 +7,8 @@ struct Vec3 {
 	Vec3(float, float, float);
 	Vec3(const BlockPos&);
 
-	const Vec3& extend(float, float, float);
-	const Vec3& set(float, float, float);
-	const Vec3& normalize();
+	Vec3& extend(float, float, float);
+	Vec3& extend(const Vec3&);
+	Vec3& set(float, float, float);
+	Vec3& normalize();
 };

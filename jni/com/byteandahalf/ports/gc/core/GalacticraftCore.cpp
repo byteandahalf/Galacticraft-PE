@@ -8,6 +8,7 @@
 
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
 #include "com/mojang/minecraftpe/world/level/block/LiquidBlock.h"
+#include "com/mojang/minecraftpe/world/material/Material.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/level/biome/BiomeDecorator.h"
 #include "com/mojang/minecraftpe/client/MinecraftClient.h"
@@ -67,6 +68,12 @@ int LiquidBlock$getTickDelay(LiquidBlock* self, BlockSource& region) {
 	return realReturn;
 }
 
+void (*Material$__setupSurfaceMaterials)();
+void Material$_setupSurfaceMaterials() {
+	Material$__setupSurfaceMaterials();
+	
+	GCBlocks::initMaterials();
+}
 
 JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Block::initBlocks, (void*) &Block$initBlocks, (void**) &_Block$initBlocks);
@@ -75,6 +82,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &MinecraftClient::init, (void*) &MinecraftClient$init, (void**) &_MinecraftClient$init);
 	MSHookFunction((void*) &LiquidBlock::getTickDelay, (void*) &LiquidBlock$getTickDelay, (void**) &_LiquidBlock$getTickDelay);
-
+	MSHookFunction((void*) &Material::_setupSurfaceMaterials, (void*) &Material$_setupSurfaceMaterials, (void**) &Material$__setupSurfaceMaterials);
+	
 	return JNI_VERSION_1_2;
 }

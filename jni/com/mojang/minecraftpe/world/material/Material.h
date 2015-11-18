@@ -1,8 +1,10 @@
 #pragma once
 #include <vector>
+#include <memory>
 #include "MaterialType.h"
 
 class Material {
+public:
 	MaterialType type; // 0
 	bool flammable; // 4
 	bool neverBuildable; // 5
@@ -14,14 +16,15 @@ class Material {
 	bool solid; // 17
 	bool superHot; // 18
 	
-public:
-	typedef int Settings;
+	enum Settings : int {
+		Default
+	};
 	
-	static std::vector<Material> mMaterials;
+	static std::vector<std::unique_ptr<Material>> mMaterials;
 	
 	Material(MaterialType, Material::Settings, float);
 	
-	bool isType(MaterialType);
+	bool isType(MaterialType) const;
 	bool isFlammable();
 	bool isNeverBuildable();
 	bool isAlwaysDestroyable();
@@ -32,5 +35,9 @@ public:
 	bool isSolid();
 	bool isSuperHot();
 	
-	static void initMaterials();
+	void _setReplaceable();
+	
+	static void addMaterial(std::unique_ptr<Material>);
+	static void _setupSurfaceMaterials();
+	static Material& getMaterial(MaterialType);
 };

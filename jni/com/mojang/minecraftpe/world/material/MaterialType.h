@@ -5,6 +5,8 @@ enum class MaterialType : int {
 	WOOD,
 	STONE,
 	IRON,
+	WATER,
+	LAVA,
 	WOOL,
 	DECORATION = 8,
 	PLANT,
@@ -12,5 +14,6 @@ enum class MaterialType : int {
 	TORCH,
 	PORTAL = 25,
 	CIRCUIT = 28,
-	LAMP = 30
+	LAMP = 30,
+	OIL
 };

@@ -3,11 +3,10 @@
 #include "com/mojang/minecraftpe/world/level/BlockSource.h"
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
-
 #include "../items/GCItems.h"
 
 BlockBasic::BlockBasic(const std::string& name, int blockId) :
-	Block(name, blockId, "stone", Material::mMaterials[3]) {
+	Block(name, blockId, "stone", Material::getMaterial(MaterialType::STONE)) {
 	setDestroyTime(1.0F);
 	setExplodeable(15.0F);
 	creativeCategory = 1;

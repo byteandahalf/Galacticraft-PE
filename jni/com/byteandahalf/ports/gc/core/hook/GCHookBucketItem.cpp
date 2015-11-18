@@ -1,9 +1,9 @@
 #include "GCHookBucketItem.h"
 #include "com/mojang/minecraftpe/world/item/BucketItem.h"
 #include "com/mojang/minecraftpe/world/entity/player/Player.h"
-#include "com/mojang/minecraftpe/world/level/BlockSource.h"
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 #include "../GCUtil.h"
+#include "../includes/leveledit.h"
 
 #define ADDRESS_USEON 30
 #define ADDRESS_BUILDDESCRIPTIONNAME 37
@@ -34,7 +34,7 @@ void GCHook::BucketItem::postSetup() {
 
 bool (*GCHook::BucketItem::_useOn)(::BucketItem*, ItemInstance*, Player*, int, int, int, signed char, float, float, float);
 bool GCHook::BucketItem::useOn(::BucketItem* bucket, ItemInstance* stack, Player* player, int x, int y, int z, signed char side, float fX, float fY, float fZ) {
-	if(player->region.getBlock({x, y, z})->blockId == 202) {
+	if(player->region.getMaterial({x, y, z}).isType(MaterialType::OIL)) {
 		player->region.removeBlock({x, y, z});
 		if(!player->creativeMode)
 			*stack = ItemInstance(325, 1, 201);

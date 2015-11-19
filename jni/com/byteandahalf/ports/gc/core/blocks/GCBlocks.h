@@ -10,6 +10,8 @@ public:
 	static void registerBlocks();
 	static void registerBlock(Block*);
 	
+	static void getNewRandomID();
+	
 	static Block* breatheableAir;
 	static Block* brightAir;
 	static Block* brightBreatheableAir;

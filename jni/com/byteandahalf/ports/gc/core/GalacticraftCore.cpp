@@ -67,7 +67,6 @@ void MinecraftClient$init(MinecraftClient* self) {
 
 int (*_LiquidBlock$getTickDelay)(LiquidBlock*, BlockSource&);
 int LiquidBlock$getTickDelay(LiquidBlock* self, BlockSource& region) {
-	return 0xA;
 	if(!self->material.isType(MaterialType::WATER) && !self->material.isType(MaterialType::LAVA))
 		return BlockFluidDynamicGC::getTickDelay(self, region);
 
@@ -120,7 +119,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &BiomeDecorator::decorateOres, (void*) &BiomeDecorator$decorateOres, (void**) &_BiomeDecorator$decorateOres);
 	MSHookFunction((void*) &Item::initCreativeItems, (void*) &Item$initCreativeItems, (void**) &_Item$initCreativeItems);
 	MSHookFunction((void*) &MinecraftClient::init, (void*) &MinecraftClient$init, (void**) &_MinecraftClient$init);
-	tiny_hook((uint32_t*)(void*) &LiquidBlock::getTickDelay, (uint32_t) &LiquidBlock$getTickDelay/*, (void**) &_LiquidBlock$getTickDelay*/);
+	MSHookFunction((void*) &LiquidBlock::getTickDelay, (void*) &LiquidBlock$getTickDelay, (void**) &_LiquidBlock$getTickDelay);
 	MSHookFunction((void*) &Material::_setupSurfaceMaterials, (void*) &Material$_setupSurfaceMaterials, (void**) &_Material$_setupSurfaceMaterials);
 	MSHookFunction((void*) &LiquidBlock::_getFlow, (void*) &LiquidBlock$_getFlow, (void**) &_LiquidBlock$_getFlow);
 	MSHookFunction((void*) &Entity::updateWaterState, (void*) &Entity$updateWaterState, (void**) &_Entity$updateWaterState);

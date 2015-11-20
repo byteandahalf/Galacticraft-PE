@@ -3,8 +3,7 @@
 
 TestEntity::TestEntity(BlockSource& region):
 	Entity(region) {
-	tnt_ticks = 10; // Use this to fake out the Tnt renderer (I need to make my own renderer)
-	rendererId = 2;
+	rendererId = 100;
 	_init();
 }
 

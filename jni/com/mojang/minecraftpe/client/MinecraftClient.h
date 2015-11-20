@@ -8,4 +8,6 @@ public:
 	TextureGroup& textures;
 
 	void init();
+	
+	TextureGroup& getTextures() const;
 };

@@ -97,7 +97,10 @@ void GCBlocks::registerBlock(Block* block) {
 int GCBlocks::getNewRandomID() {
 	int id = 0;
 	while(Block::mOwnedBlocks[id] != NULL) {
-		id++;
+		if(id < 256)
+			id++;
+		else 
+			return NULL;
 	}	
 	return id;
 }

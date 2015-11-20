@@ -123,6 +123,7 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Material::_setupSurfaceMaterials, (void*) &Material$_setupSurfaceMaterials, (void**) &_Material$_setupSurfaceMaterials);
 	MSHookFunction((void*) &LiquidBlock::_getFlow, (void*) &LiquidBlock$_getFlow, (void**) &_LiquidBlock$_getFlow);
 	MSHookFunction((void*) &Entity::updateWaterState, (void*) &Entity$updateWaterState, (void**) &_Entity$updateWaterState);
+	//MSHookFunction((void*) &EntityFactory::CreateEntity, (void*) &EntityFactory$CreateEntity, (void**) &_EntityFactory$CreateEntity);
 	tiny_hook((uint32_t*)(void*) &EntityRenderDispatcher::getRenderer, (uint32_t) &EntityRenderDispatcher$getRenderer);
 
 	return JNI_VERSION_1_2;

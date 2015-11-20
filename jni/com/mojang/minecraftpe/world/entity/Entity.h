@@ -20,6 +20,7 @@ class ChangeDimensionPacket;
 struct AABB;
 #include "../material/Material.h"
 #include "EntityType.h"
+#include "EntityFactory.h"
 #include "../phys/Vec3.h"
 
 class Entity {

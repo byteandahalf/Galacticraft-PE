@@ -5,6 +5,7 @@
 #include <substrate.h>
 #include <string>
 #include <memory>
+#include "tinyhook.h"
 
 #include "com/mojang/minecraftpe/world/level/block/Block.h"
 #include "com/mojang/minecraftpe/world/level/block/LiquidBlock.h"
@@ -64,16 +65,15 @@ void MinecraftClient$init(MinecraftClient* self) {
 
 int (*_LiquidBlock$getTickDelay)(LiquidBlock*, BlockSource&);
 int LiquidBlock$getTickDelay(LiquidBlock* self, BlockSource& region) {
-	int realReturn = _LiquidBlock$getTickDelay(self, region);
-	if(realReturn == 0)
+	if(!self->material.isType(MaterialType::WATER) && !self->material.isType(MaterialType::LAVA))
 		return BlockFluidDynamicGC::getTickDelay(self, region);
 
-	return realReturn;
+	return _LiquidBlock$getTickDelay(self, region);
 }
 
 Vec3 (*_LiquidBlock$_getFlow)(LiquidBlock*, BlockSource&, const BlockPos&);
 Vec3 LiquidBlock$_getFlow(LiquidBlock* self, BlockSource& region, const BlockPos& pos) {
-	if(self->material.isType(MaterialType::OIL))
+	if(!self->material.isType(MaterialType::WATER) && !self->material.isType(MaterialType::LAVA))
 		return BlockFluidDynamicGC::_getFlow(self, region, pos);
 
 	return _LiquidBlock$_getFlow(self, region, pos);

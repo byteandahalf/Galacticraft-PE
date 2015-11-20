@@ -32,7 +32,9 @@ public:
 	Vec3 velocity; // 44
 	float yaw; // 56
 	float pitch; // 60
-	char filler[52]; // 64
+	float lastYaw; // 64
+	float lastPitch; // 68
+	char filler[44]; // 72
 	Level& level; // 116
 	char filler2[68]; // 120
 	float heightOffset; // 188

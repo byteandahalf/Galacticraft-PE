@@ -2,7 +2,7 @@
 #include "com/mojang/minecraftpe/world/item/Item.h"
 #include "com/mojang/minecraftpe/world/item/ItemInstance.h"
 #include "com/mojang/minecraftpe/world/entity/player/Player.h"
-#include "../entity/TestEntity.h"
+#include "../entity/Tier1RocketEntity.h"
 #include "../includes/leveledit.h"
 #include "../items/GCItems.h"
 
@@ -90,6 +90,6 @@ const ItemInstance& BlockBasic::asItemInstance(BlockSource& region, const BlockP
 }
 
 bool BlockBasic::use(Player& player, const BlockPos& pos) {
-	player.level.addGlobalEntity(std::unique_ptr<Entity>(new TestEntity(player.region, pos)));
+	player.level.addGlobalEntity(std::unique_ptr<Entity>(new Tier1RocketEntity(player.region, pos)));
 }
 

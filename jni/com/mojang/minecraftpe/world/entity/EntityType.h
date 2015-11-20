@@ -1,6 +1,6 @@
 #pragma once
 
 enum class EntityType : int {
-	TEST = 50
+	ROCKET_TIER1 = 50
 };
 

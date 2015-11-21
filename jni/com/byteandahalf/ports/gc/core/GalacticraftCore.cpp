@@ -25,7 +25,7 @@
 #include "texture/GCAnimatedTexture.h"
 #include "hook/GCHookBucketItem.h"
 #include "entity/GCEntityFactory.h"
-#include "render/entity/GCEntityRenderDispatcher.h"
+#include "client/render/entity/GCEntityRenderDispatcher.h"
 
 
 void (*_Block$initBlocks)();

@@ -3,11 +3,13 @@
 #include "com/mojang/minecraftpe/world/phys/Vec3.h"
 #include "com/mojang/minecraftpe/client/renderer/renderer/Matrix.h"
 #include "com/mojang/minecraftpe/client/renderer/renderer/MatrixStack.h"
+#include "com/mojang/minecraftpe/client/renderer/texture/TexturePtr.h"
+#include <cmath>
 
-Tier1RocketRenderer::Tier1RocketRenderer(TextureGroup& group, Tier1RocketModel& model):
-	EntityRenderer(group, false) {
-	rocketModel = model;
-
+Tier1RocketRenderer::Tier1RocketRenderer(TextureGroup& group):
+	EntityRenderer(group, false),
+	rocketModel(Tier1RocketModel()) {
+	//rocketModel._texture = mce::TexturePtr(group, "entity/Tier1Rocket.png");
 }
 
 void Tier1RocketRenderer::renderTier1Rocket(Tier1RocketEntity& rocket, const Vec3& pos, float f1, float f2) {
@@ -27,7 +29,7 @@ void Tier1RocketRenderer::renderTier1Rocket(Tier1RocketEntity& rocket, const Vec
 		fixedShipDamage = 0.0F;
 
 	if (fixedRollAmplitude > 0.0F) {
-		const float i = rocket.hasLaunched()? (5 - floor(rocket.timeUntilLaunch / 85)) / 10F : 0.3F;
+		const float i = rocket.hasLaunched()? (5 - floor(rocket.timeUntilLaunch / 85)) / 10 : 0.3F;
 		matrix->rotate(sin(fixedRollAmplitude) * fixedRollAmplitude * i * f2, {1.0F, 0.0F, 0.0F});
 		matrix->rotate(sin(fixedRollAmplitude) * fixedRollAmplitude * i * f2, {1.0F, 0.0F, 1.0F});
 	}
@@ -35,7 +37,7 @@ void Tier1RocketRenderer::renderTier1Rocket(Tier1RocketEntity& rocket, const Vec
 	//this.bindEntityTexture(rocket);
 	matrix->scale({-1.0F, -1.0F, 1.0F});
 
-	rocketModel.render(rocket, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+	//rocketModel.render(rocket, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 }
 
 void Tier1RocketRenderer::render(Entity& entity, const Vec3& pos, float f1, float f2) {

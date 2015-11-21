@@ -1,5 +1,6 @@
 #pragma once
 #include "com/mojang/minecraftpe/client/model/models/Model.h"
+#include "com/mojang/minecraftpe/client/model/geom/ModelPart.h"
 
 class Tier1RocketModel : public Model {
 	ModelPart insideRoof;
@@ -20,7 +21,7 @@ class Tier1RocketModel : public Model {
 	ModelPart wing2d;
 	ModelPart wing2c;
 	ModelPart wing2b;
-	ModelPart wing2a;bv
+	ModelPart wing2a;
 	ModelPart wing3e;
 	ModelPart wing3d;
 	ModelPart wing3c;
@@ -43,7 +44,7 @@ class Tier1RocketModel : public Model {
 	ModelPart insideSideBack;
 	ModelPart insideFloor;
 
-	void setPartAngles(ModelPart, float, float, float);
+	void setPartAngles(ModelPart&, float, float, float);
 
 public:
 	Tier1RocketModel();

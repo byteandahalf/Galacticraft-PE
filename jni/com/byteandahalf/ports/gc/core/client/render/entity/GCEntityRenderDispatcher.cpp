@@ -3,6 +3,7 @@
 #include "com/mojang/minecraftpe/client/renderer/entity/EntityRenderDispatcher.h"
 
 #include "Tier1RocketRenderer.h"
+#include "models/Tier1RocketModel.h"
 
 bool GCEntityRenderDispatcher::_Initialized = false;
 

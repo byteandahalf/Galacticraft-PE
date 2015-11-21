@@ -1,6 +1,10 @@
 #include "Vec3.h"
 #include <cmath>
 
+Vec3::Vec3() {
+	Vec3(0.0F, 0.0F, 0.0F);
+}
+
 Vec3::Vec3(float _x, float _y, float _z) {
 	x = _x, y = _y, z = _z;
 }

@@ -6,6 +6,9 @@ class Vec2;
 class Options;
 
 class EntityRenderer : public EntityShaderManager {
+protected:
+	char stuff[88];
+
 public:
 	EntityRenderer(TextureGroup&, bool);
 	

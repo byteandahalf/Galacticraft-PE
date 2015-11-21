@@ -2,7 +2,8 @@
 class Entity;
 
 class EntityShaderManager {
-	char filler[48];
+protected:
+	char filler[40];
 
 public:
 	EntityShaderManager();

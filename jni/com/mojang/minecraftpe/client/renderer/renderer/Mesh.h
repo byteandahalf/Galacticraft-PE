@@ -1,5 +1,9 @@
 #pragma once
 
-struct Mesh {
-	char filler[80];
+namespace mce {
+	struct Mesh {
+		char filler[80];
+		
+		Mesh();
+	};
 };

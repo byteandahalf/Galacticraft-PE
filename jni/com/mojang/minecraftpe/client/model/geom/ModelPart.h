@@ -8,20 +8,20 @@ namespace mce { class MaterialPtr; };
 #include "../../../world/phys/Vec3.h"
 
 class ModelPart {
+public:
 	Vec3 rotationPoints; // 0
 	Vec3 pos; // 12
 	bool mirror; // 24
 	bool visible; // 25
-	std::vector<Cube> _cubeList; // 28
+	std::vector<Cube*> _cubeList; // 28
 	std::vector<ModelPart*> _children; // 40
 	float textureWidth, textureHeight; // 52, 56
 	mce::MaterialPtr* material; // 60
 	int textureX, textureY; // 64, 68
 	bool neverRender; // 72
-	Mesh mesh; // 76
-	Vec3& rotationAngles; // 156
+	mce::Mesh mesh; // 76
+	Vec3 rotationAngles; // 156
 
-public:
 	ModelPart(int, int, int, int);
 
 	void addBox(const Vec3&, const Vec3&, float);

@@ -3,7 +3,10 @@ class BlockPos;
 
 struct Vec3 {
 	float x, y, z;
+	
+	static Vec3 ZERO;
 
+	Vec3();
 	Vec3(float, float, float);
 	Vec3(const BlockPos&);
 

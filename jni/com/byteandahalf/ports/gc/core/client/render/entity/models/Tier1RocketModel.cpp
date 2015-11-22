@@ -49,7 +49,7 @@ Tier1RocketModel::Tier1RocketModel():
 	insideRoof.setPos({0, 23, 0});
 	insideRoof.mirror = true;
 	setPartAngles(insideRoof, 0, 0, 0);
-	rocketBase1.addBox({-7, -1, -7}, {14, 1, 14}, 1.0);
+	rocketBase1.addBox({-7, -1, -7}, {14, 1, 14}, 0.0);
 	rocketBase1.setPos({0, 24, 0});
 	rocketBase1.mirror = true;
 	setPartAngles(rocketBase1, 0, 0, 0);
@@ -209,9 +209,9 @@ Tier1RocketModel::Tier1RocketModel():
 
 void Tier1RocketModel::render(Entity& rocketmodel, float x, float y, float z, float f1, float f2, float f3) {
 	Model::render(rocketmodel, x, y, z, f1, f2, f3);
-	insideRoof.render(*this, f2);
+	//insideRoof.render(*this, f2);
 	rocketBase1.render(*this, f2);
-	rocketBase2.render(*this, f2);
+	/*rocketBase2.render(*this, f2);
 	tip.render(*this, f2);
 	wing4d.render(*this, f2);
 	wing4c.render(*this, f2);
@@ -248,7 +248,7 @@ void Tier1RocketModel::render(Entity& rocketmodel, float x, float y, float z, fl
 	insideSideLeft.render(*this, f2);
 	insideSideRight.render(*this, f2);
 	insideSideBack.render(*this, f2);
-	insideFloor.render(*this, f2);
+	insideFloor.render(*this, f2);*/
 }
 
 void Tier1RocketModel::setPartAngles(ModelPart& part, float x, float y, float z) {

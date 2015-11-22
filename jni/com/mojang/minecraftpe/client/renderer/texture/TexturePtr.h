@@ -3,9 +3,11 @@
 class TextureGroup;
 
 namespace mce {
+	class Texture;
+	
 	struct TexturePtr {
-		TextureGroup& textures;
-		int idk;
+		TextureGroup& group;
+		mce::Texture* _texture;
 		const std::string& path;
 		
 		TexturePtr();

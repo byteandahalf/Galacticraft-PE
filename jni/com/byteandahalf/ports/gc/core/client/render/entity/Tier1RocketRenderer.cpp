@@ -7,19 +7,19 @@
 #include <cmath>
 
 Tier1RocketRenderer::Tier1RocketRenderer(TextureGroup& group):
-	EntityRenderer(group, false),
+	EntityRenderer(group, true),
 	rocketModel(Tier1RocketModel()) {
-	//rocketModel._texture = mce::TexturePtr(group, "entity/Tier1Rocket.png");
+	rocketModel._texture = new mce::TexturePtr(group, "Tier1Rocket.png");
 }
 
 void Tier1RocketRenderer::renderTier1Rocket(Tier1RocketEntity& rocket, const Vec3& pos, float f1, float f2) {
 	MatrixStack::Ref matref = MatrixStack::World.push();
 	Matrix* matrix = matref.matrix;
-	const float fixedPitch = rocket.lastPitch + (rocket.pitch - rocket.lastPitch) * f2;
-	const float fixedYaw = rocket.lastYaw + (rocket.yaw - rocket.lastYaw) * f2;
+	//const float fixedPitch = rocket.lastPitch + (rocket.pitch - rocket.lastPitch) * f2;
+//	const float fixedYaw = rocket.lastYaw + (rocket.yaw - rocket.lastYaw) * f2;
 
 	matrix->translate(pos);
-	matrix->rotate(180.0F - f1, {0.0F, 1.0F, 0.0F});
+	/*matrix->rotate(180.0F - f1, {0.0F, 1.0F, 0.0F});
 	matrix->rotate(-fixedPitch, {0.0F, 0.0F, 1.0F});
 	matrix->rotate(-fixedYaw, {0.0F, 1.0F, 0.0F});
 	const float fixedRollAmplitude = rocket.rollAmplitude - f2;
@@ -35,9 +35,9 @@ void Tier1RocketRenderer::renderTier1Rocket(Tier1RocketEntity& rocket, const Vec
 	}
 
 	//this.bindEntityTexture(rocket);
-	matrix->scale({-1.0F, -1.0F, 1.0F});
+	matrix->scale({-1.0F, -1.0F, 1.0F});*/
 
-	//rocketModel.render(rocket, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+	rocketModel.render(rocket, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
 }
 
 void Tier1RocketRenderer::render(Entity& entity, const Vec3& pos, float f1, float f2) {

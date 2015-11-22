@@ -5,6 +5,8 @@ struct MatrixStack {
 	struct Ref {
 		MatrixStack* stack;
 		Matrix* matrix;
+		
+		~Ref();
 	};
 
 	static MatrixStack Projection;

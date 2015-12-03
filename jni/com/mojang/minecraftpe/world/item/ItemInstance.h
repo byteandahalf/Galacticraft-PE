@@ -5,7 +5,8 @@ class Block;
 
 class ItemInstance {
 public:
-	short count, aux;
+	uint8_t count;
+	short aux;
 	CompoundTag* userData;
 	bool valid;
 	Item* item;

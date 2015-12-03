@@ -25,7 +25,7 @@ void GCHook::BucketItem::setupHooks() {
 void GCHook::BucketItem::setupReals(void** vtable) {
 	GCHook::BucketItem::_useOn = (bool (*)(::BucketItem*, ItemInstance*, Player*, int, int, int, signed char, float, float, float)) vtable[ADDRESS_USEON];
 	GCHook::BucketItem::_getIcon = (const TextureUVCoordinateSet& (*)(::BucketItem*, int, int, bool)) vtable[ADDRESS_GETICON];
-	GCHook::BucketItem::_buildDescriptionName = (std::string (*)(::BucketItem*, const ItemInstance&)) vtable[ADDRESS_BUILDDESCRIPTIONNAME];
+	GCHook::BucketItem::_buildDescriptionName = (const std::string (*)(::BucketItem*, const ItemInstance&)) vtable[ADDRESS_BUILDDESCRIPTIONNAME];
 }
 
 void GCHook::BucketItem::postSetup() {
@@ -52,8 +52,8 @@ const TextureUVCoordinateSet& GCHook::BucketItem::getIcon(::BucketItem* bucket, 
 	return GCHook::BucketItem::_getIcon(bucket, data, par3, par4);
 }
 
-std::string (*GCHook::BucketItem::_buildDescriptionName)(::BucketItem*, const ItemInstance&);
-std::string GCHook::BucketItem::buildDescriptionName(::BucketItem* bucket, const ItemInstance& item) {
+const std::string (*GCHook::BucketItem::_buildDescriptionName)(::BucketItem*, const ItemInstance&);
+const std::string GCHook::BucketItem::buildDescriptionName(::BucketItem* bucket, const ItemInstance& item) {
 	if(item.aux == 201)
 		return "Oil Bucket"; // TODO: Localize
 

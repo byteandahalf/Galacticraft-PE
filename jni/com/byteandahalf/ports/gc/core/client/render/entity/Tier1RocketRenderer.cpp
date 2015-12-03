@@ -9,7 +9,7 @@
 Tier1RocketRenderer::Tier1RocketRenderer(TextureGroup& group):
 	EntityRenderer(group, true),
 	rocketModel(Tier1RocketModel()) {
-	rocketModel._texture = new mce::TexturePtr(group, "Tier1Rocket.png");
+	rocketModel._texture = new mce::TexturePtr(group, "entity/minecart.png");
 }
 
 void Tier1RocketRenderer::renderTier1Rocket(Tier1RocketEntity& rocket, const Vec3& pos, float f1, float f2) {

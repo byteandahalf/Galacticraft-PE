@@ -37,9 +37,10 @@ void Block$initBlocks() {
 
 void (*_Item$initItems)();
 void Item$initItems() {
-	_Item$initItems();
-
 	GCItems::initItems();
+
+	_Item$initItems();
+	
 	GCHook::BucketItem::setupHooks();
 }
 
@@ -55,7 +56,7 @@ void BiomeDecorator$decorateOres(BiomeDecorator* self, BlockSource* region, Rand
 	_BiomeDecorator$decorateOres(self, region, random, pos);
 	
 	// Disable for now, since it's crashing sometimes.
-	//GCFeatures::populateFeatures(self, region, random, pos);
+	GCFeatures::populateFeatures(self, region, random, pos);
 }
 
 void (*_MinecraftClient$init)(MinecraftClient*);
@@ -125,6 +126,6 @@ JNIEXPORT jint JNI_OnLoad(JavaVM* vm, void* reserved) {
 	MSHookFunction((void*) &Entity::updateWaterState, (void*) &Entity$updateWaterState, (void**) &_Entity$updateWaterState);
 	//MSHookFunction((void*) &EntityFactory::CreateEntity, (void*) &EntityFactory$CreateEntity, (void**) &_EntityFactory$CreateEntity);
 	tiny_hook((uint32_t*)(void*) &EntityRenderDispatcher::getRenderer, (uint32_t) &EntityRenderDispatcher$getRenderer);
-
+	
 	return JNI_VERSION_1_2;
 }

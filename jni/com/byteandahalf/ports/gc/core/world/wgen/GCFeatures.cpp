@@ -12,7 +12,7 @@ void GCFeatures::registerFeatures() {
 	Registered = true;
 	
 	// Create FeatureInfo and push to the global feature vector
-	features.emplace_back(GCFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(19, 0, 12)), 20, 0, 128);
+	features.emplace_back(GCFeatureInfo::GenType::SPAN, std::unique_ptr<Feature>(new OreFeature(200, 5, 7)), 21, 10, 127);
 }
 
 void GCFeatures::populateFeatures(BiomeDecorator* decorator, BlockSource* region, Random& random, const BlockPos& pos) {

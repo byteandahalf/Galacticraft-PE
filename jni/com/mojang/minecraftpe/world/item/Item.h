@@ -1,9 +1,12 @@
 #pragma once
 #include <string>
+#include <memory>
+#include "food/FoodItemComponent.h"
+#include "UseAnimation.h"
 class TextureUVCoordinateSet;
+struct SeedItemComponent;
 class Block;
 class CreativeItemCategory;
-class UseAnimation;
 class ItemInstance;
 class Player;
 class Mob;
@@ -33,16 +36,16 @@ public:
 	int idk4; // 44
 	TextureUVCoordinateSet& icon; // 48
 	int idk5; // 52
-	bool isFood; // 56
-	Item* craftingRemainingItem; // 60
+	std::unique_ptr<FoodItemComponent> _foodDetails; // 56
+	std::unique_ptr<SeedItemComponent> _seedDetails; // 60
 
 	static Item* mItems[512];
 
 	Item(const std::string&, short);
 
 	virtual ~Item();
-	virtual void setIcon(const std::string&, int);
-	virtual void setIcon(const TextureUVCoordinateSet&);
+	virtual Item* setIcon(const std::string&, int);
+	virtual Item* setIcon(const TextureUVCoordinateSet&);
 	virtual void setMaxStackSize(unsigned char);
 	virtual void setCategory(CreativeItemCategory);
 	virtual void setStackedByData(bool);
@@ -76,8 +79,8 @@ public:
 	virtual void hurtEnemy(ItemInstance*, Mob*, Mob*);
 	virtual void interactEnemy(ItemInstance*, Mob*, Player*);
 	virtual void mineBlock(ItemInstance*, BlockID, int, int, int, Mob*);
-	virtual const std::string& buildDescriptionName(const ItemInstance&) const;
-	virtual const std::string& buildEffectDescriptionName(const ItemInstance&) const;
+	virtual const std::string buildDescriptionName(const ItemInstance&) const;
+	virtual const std::string buildEffectDescriptionName(const ItemInstance&) const;
 	virtual void readUserData(ItemInstance*, RakNet::BitStream*) const;
 	virtual void writeUserData(const ItemInstance*, RakNet::BitStream*, bool) const;
 	virtual int getMaxStackSize(const ItemInstance*);

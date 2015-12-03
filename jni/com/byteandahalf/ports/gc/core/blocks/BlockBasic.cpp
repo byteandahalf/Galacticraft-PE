@@ -7,11 +7,11 @@
 #include "../items/GCItems.h"
 
 BlockBasic::BlockBasic(const std::string& name, int blockId) :
-	Block(name, blockId, "stone", Material::getMaterial(MaterialType::STONE)) {
+	Block(name, blockId, "deco_aluminium", Material::getMaterial(MaterialType::STONE)) {
 	setDestroyTime(1.0F);
 	setExplodeable(15.0F);
 	creativeCategory = 1;
-	//initTextures();
+	initTextures();
 }
 
 void BlockBasic::initTextures() {
@@ -26,7 +26,7 @@ void BlockBasic::initTextures() {
 	iconBuffer[8] = getTextureUVCoordinateSet("deco_copper_block", 0);
 	iconBuffer[9] = getTextureUVCoordinateSet("deco_tin_block", 0);
 	iconBuffer[10] = getTextureUVCoordinateSet("deco_aluminium_block", 0);
-	iconBuffer[11] = getTextureUVCoordinateSet("deco_meteoriron_block", 0);
+	iconBuffer[11] = getTextureUVCoordinateSet("stone"/*"deco_meteoriron_block"*/, 0);
 }
 
 const TextureUVCoordinateSet& BlockBasic::getTexture(signed char side, int data) {
@@ -78,7 +78,7 @@ int BlockBasic::getSpawnResourcesAuxValue(unsigned char data) {
 }
 
 int BlockBasic::getResourceCount(Random& random, int data, int fortune) {
-	return 1; // TODO
+	return 1;
 }
 
 const ItemInstance& BlockBasic::asItemInstance(BlockSource& region, const BlockPos& pos, int idk) const {
@@ -90,6 +90,8 @@ const ItemInstance& BlockBasic::asItemInstance(BlockSource& region, const BlockP
 }
 
 bool BlockBasic::use(Player& player, const BlockPos& pos) {
-	player.level.addGlobalEntity(std::unique_ptr<Entity>(new Tier1RocketEntity(player.region, pos)));
+	int data = player.region.getData(pos) + 1;
+	int newdata = (data > 11)? 0 : data;
+	player.region.setBlockAndData(pos, {blockId, newdata}, 3);
 }
 
